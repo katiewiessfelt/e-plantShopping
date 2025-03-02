@@ -207,6 +207,12 @@ body {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    &:disabled {
+        background-color: lightgray;
+    }
+    &:disabled:hover {
+        background-color: lightgray;
+    }
   }
   
   .product-button:hover {

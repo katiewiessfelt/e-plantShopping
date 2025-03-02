@@ -24,7 +24,7 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(
       updateQuantity({
         name: item.name,
-        quantity: item.quantity++,
+        quantity: item.quantity + 1,
       })
     );
   };
@@ -34,7 +34,7 @@ const CartItem = ({ onContinueShopping }) => {
       dispatch(
         updateQuantity({
           name: item.name,
-          quantity: item.quantity--,
+          quantity: item.quantity - 1,
         })
       );
     } else {
@@ -51,10 +51,15 @@ const CartItem = ({ onContinueShopping }) => {
     return item.quantity * parseFloat(item.cost.substring(1));
   };
 
+  const handleContinueShopping = (e) => {
+    e.preventDefault();
+    onContinueShopping();
+  };
+
   return (
     <div className="cart-container">
       <h2 style={{ color: "black" }}>
-        Total Cart Amount: ${calculateTotalAmount()}
+        Total Cart Amount: ${calculateTotalAmount(cart)}
       </h2>
       <div>
         {cart.map((item) => (
@@ -105,7 +110,7 @@ const CartItem = ({ onContinueShopping }) => {
           Continue Shopping
         </button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
       </div>
     </div>
   );
